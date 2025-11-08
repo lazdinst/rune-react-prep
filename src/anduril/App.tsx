@@ -56,19 +56,20 @@ const App: React.FC = () => {
   }, [filter]);
 
   useEffect(() => {
-    setFilteredFeeds(
-      feeds.filter((feed) => {
-        const sanitized = debouncedFilter?.toLowerCase();
-        if (sanitized) {
-          return (
-            feed.name.toLowerCase().includes(sanitized) ||
-            feed.mode.toLowerCase().includes(sanitized) ||
-            feed.status.toLowerCase().includes(sanitized)
-          );
-        }
-        return feed;
-      })
-    );
+    const sanitized = debouncedFilter?.trim().toLowerCase();
+
+    if (!sanitized) {
+      setFilteredFeeds(feeds);
+      return;
+    }
+
+    const searchTerms = sanitized.split(/\s+/);
+    const filtered = feeds.filter((feed) => {
+      const haystack = `${feed.name} ${feed.mode} ${feed.status}`.toLowerCase();
+      return searchTerms.every((term) => haystack.includes(term));
+    });
+
+    setFilteredFeeds(filtered);
   }, [debouncedFilter, feeds]);
 
   if (isLoading) return <div style={LoadingPage}>Loading</div>;

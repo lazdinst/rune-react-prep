@@ -1,3 +1,4 @@
+import type { LatLngTuple } from "leaflet";
 import type { IFeedStatus } from "./types";
 
 export const getFeedOnlineStatus = (status: IFeedStatus) => {
@@ -31,4 +32,10 @@ export const getLastUpdated = (lastUpdate: string | Date) => {
   const remainingHours = differenceInHours % 24;
 
   return `Last Updated: ${differenceInDays}days ${remainingHours}hrs ${remainingMins}m ${remainingSeconds}s ago`;
+};
+
+export const getLatLangFromAssetLocation = (latLng: string) => {
+  return latLng
+    .split(", ")
+    .map((value) => parseFloat(value.trim())) as LatLngTuple;
 };

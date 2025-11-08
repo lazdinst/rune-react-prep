@@ -23,7 +23,6 @@ const FeedEntry: React.FC<IFeedEntryProps> = ({ feed, handleEntryClick }) => {
 
   const handleClick = () => {
     if (feed) {
-      console.log("click");
       handleEntryClick(feed);
     }
   };
