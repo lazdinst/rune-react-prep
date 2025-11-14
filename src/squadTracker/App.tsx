@@ -52,11 +52,13 @@ function App() {
   );
 
   const filteredSquads = useMemo(() => {
-    // We need to be able to fitler or if there is a sortation set, return the filtered version
     const base = squads.filter((sqd) => {
       return !squadTypeFilter || sqd.type === squadTypeFilter;
     });
+
     if (sortDir === "none") return base;
+
+    // Determine Sort Direction
     return [...base].sort((a, b) => {
       return sortDir === "asc"
         ? a.priority - b.priority
