@@ -4,6 +4,7 @@ import { default as AndurilApp } from "./anduril/App";
 import { default as OfflineFirstQueue } from "./offline-first-queue/App";
 import { default as Offline } from "./offline/App";
 import { default as SquadTracker } from "./squadTracker/App";
+import { default as MissionLogisticsFeed } from "./mission-logistics-feed/App";
 import "./style.css";
 import { NetworkProvider } from "./offline-first-queue/context";
 import {
@@ -17,6 +18,7 @@ const CURRENT_APP = [
   <OfflineFirstQueue />,
   <Offline />,
   <SquadTracker />,
+  <MissionLogisticsFeed />,
 ];
 
 createRoot(document.getElementById("root")!).render(
@@ -24,7 +26,7 @@ createRoot(document.getElementById("root")!).render(
     <NetworkProvider>
       <QueueProvider>
         <MissionsProvider>
-          <NetworkProvider2>{CURRENT_APP[3] || null}</NetworkProvider2>
+          <NetworkProvider2>{CURRENT_APP[4] || null}</NetworkProvider2>
         </MissionsProvider>
       </QueueProvider>
     </NetworkProvider>
